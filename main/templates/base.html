@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Lugx Gaming Shop HTML5 Template</title>
+    <link rel="icon" href='{% static "assets/images/logo1.png" %}'/>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-lugx-gaming.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css'%}">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
+
+TemplateMo 589 lugx gaming
+
+https://templatemo.com/tm-589-lugx-gaming
+
+-->
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{% url 'home' %}" class="logo">
+                        <img src="{% static 'assets/images/logo.png' %}" alt="" style="width: 158px;">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      {% if request.get_full_path == '/' or request.get_full_path == '/home' %}
+                      <li><a href="{% url 'home' %}" class="active">Home</a></li>
+                      <li><a href="{% url 'shop' %}">Our Shop</a></li>
+                      <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                      {% elif request.get_full_path|slice:"0:6" == '/shop/' or request.get_full_path|slice:"0:9" == '/details/' %}
+                      <li><a href="{% url 'home' %}">Home</a></li>
+                      <li><a href="{% url 'shop' %}" class="active">Our Shop</a></li>
+                      <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                      {% elif request.get_full_path == '/contact-us/' %}
+                      <li><a href="{% url 'home' %}">Home</a></li>
+                      <li><a href="{% url 'shop' %}">Our Shop</a></li>
+                      <li><a href="{% url 'contact' %}" class="active">Contact Us</a></li>
+                      {% else %}
+                      <li><a href="{% url 'home' %}">Home</a></li>
+                      <li><a href="{% url 'shop' %}">Our Shop</a></li>
+                      <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                      {% endif %}
+                      {% if user.is_authenticated %}
+                      <li><a href="{% url 'logout' %}">logout</a></li>
+                      <li><a href="{% url 'personal_account' %}">{{ user.username }}</a></li>
+                      {% else %}
+                      <li><a href="{% url 'register' %}">Sign Up</a></li>
+                      {% endif %}
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+   {% block content %}
+   {% endblock %}
+   <footer>
+    <div class="container">
+      <div class="col-lg-12">
+        <p>Copyright © 2048 LUGX Gaming Company. All rights reserved. &nbsp;&nbsp; <a rel="nofollow" href="https://templatemo.com" target="_blank">Design: TemplateMo</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'assets/js/isotope.min.js'%}"></script>
+  <script src="{% static 'assets/js/owl-carousel.js'%}"></script>
+  <script src="{% static 'assets/js/counter.js'%}"></script>
+  <script src="{% static 'assets/js/custom.js'%}"></script>
+
+  </body>
+</html>
